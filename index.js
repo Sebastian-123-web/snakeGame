@@ -11,7 +11,6 @@ let direction = "RIGHT"
 let posX = 40
 let posY = 40
 
-
 // TECLADO
 const KEY_LEFT=37;
 const KEY_UP=38;
@@ -54,6 +53,17 @@ function Eat(){
 function positionEatRamdom(){
     eX = Math.floor((Math.random() * alto)/10) * 10
     eY = Math.floor((Math.random() * alto)/10) * 10
+}
+
+function showGameOver() {
+    eat.fillStyle = "red"; // Fondo semitransparente
+    eat.fillRect(0, 0, canvas.width, canvas.height); // Cubre todo el canvas
+
+    eat.fillStyle = "white"; // Color del texto
+    eat.font = "bold 48px Arial"; // Fuente y tamaño del texto
+    eat.textAlign = "center"; // Alineación horizontal
+    eat.textBaseline = "middle"; // Alineación vertical
+    eat.fillText("Game Over", canvas.width / 2, canvas.height / 2); // Texto centrado
 }
 
 // CREANDO NUESTRA SERPIENTE
@@ -117,9 +127,6 @@ function motionSnake() {
 function snakeEat(){
     console.log("EX: "+eX+" SX: "+snakeBody[0].x +" | EY: "+eY+" SY: "+snakeBody[0].y)
     if (snakeBody[1].x == eX && snakeBody[1].y == eY) {
-        
-        console.log("come: colision")
-        snakeBody.length
         snakeBody.push({x:snakeBody[snakeBody.length - 1] - 10,y:posY})
         positionEatRamdom()
     }
@@ -128,12 +135,6 @@ function snakeEat(){
 function snakeDead(){
     if (snakeBody[0].x < 0 || snakeBody[0].x > ancho || snakeBody[0].y < 0 || snakeBody[0].y > alto) {
         console.log("SNAKE DEAD")
-
-        // NO FUNCIONA EL MENSAJE DE GAME OVER
-        snake.beginPath()
-        snake.font = '30px Verdana';
-        snake.setFillColor = "blue"
-        snake.fillText("GAME OVER",50,50)
         return true
     }
     return false
