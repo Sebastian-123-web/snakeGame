@@ -1,11 +1,11 @@
 // TAMAÑO DEL CANVA
-const alto = 500
-const ancho = 500
+const alto = 450
+const ancho = 450
 
 // CARACTERISTICAS DE LA SERPIENTE
 const snakeW = 10
 const snakeH = 10
-const snakeSpeed = 100
+const snakeSpeed = 150
 let snakeMotion = ""
 let direction = "RIGHT"
 let posX = 40
@@ -18,8 +18,7 @@ const KEY_RIGHT=39;
 const KEY_DOWN=40;
 
 // DEFINIENDO EL CANVA (COLOR DE FONDO Y TAMAÑO)
-const scena = document.getElementById("snake")
-scena.style.backgroundColor = "black"
+const scena = document.getElementById("snakegame")
 scena.height = alto
 scena.width = ancho
 
@@ -39,7 +38,6 @@ function run() {
     motionSnake()
     snakeEat()
     Eat()
-    
 }
 
 // CREANDO COMIDA
@@ -47,8 +45,8 @@ let eat = scena.getContext("2d")
 let eX = Math.floor((Math.random() * alto)/10) * 10
 let eY = Math.floor((Math.random() * alto)/10) * 10
 function Eat(){
-    eat.strokeStyle = "red"
-    eat.strokeRect(eX,eY,snakeW,snakeH)
+    eat.fillStyle = "red"
+    eat.fillRect(eX,eY,snakeW,snakeH)
 }
 function positionEatRamdom(){
     eX = Math.floor((Math.random() * alto)/10) * 10
@@ -76,14 +74,14 @@ let snakeBody = [
 ] 
 
 function snakePlayer(){
-    snake.strokeStyle = "green"
+    snake.fillStyle = "green"
 }
 
 // BORRAR RASTRO DEL SNAKE
 function paint() {
     snake.clearRect(0,0,scena.width,scena.height)
     for(let snakeB of snakeBody){
-        snake.strokeRect(snakeB.x,snakeB.y,snakeW,snakeH)
+        snake.fillRect(snakeB.x,snakeB.y,snakeW,snakeH)
     }
 }
 
@@ -125,7 +123,7 @@ function motionSnake() {
 }
 
 function snakeEat(){
-    console.log("EX: "+eX+" SX: "+snakeBody[0].x +" | EY: "+eY+" SY: "+snakeBody[0].y)
+    //console.log("EX: "+eX+" SX: "+snakeBody[0].x +" | EY: "+eY+" SY: "+snakeBody[0].y)
     if (snakeBody[1].x == eX && snakeBody[1].y == eY) {
         snakeBody.push({x:snakeBody[snakeBody.length - 1] - 10,y:posY})
         positionEatRamdom()
@@ -133,7 +131,7 @@ function snakeEat(){
 }
 
 function snakeDead(){
-    if (snakeBody[0].x < 0 || snakeBody[0].x > ancho || snakeBody[0].y < 0 || snakeBody[0].y > alto) {
+    if (snakeBody[0].x <= -1 || snakeBody[0].x >= ancho || snakeBody[0].y <= -1 || snakeBody[0].y >= alto) {
         console.log("SNAKE DEAD")
         return true
     }

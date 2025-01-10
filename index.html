@@ -4,9 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snake</title>
+    <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
-    <canvas id="snake"></canvas>
-    <script src="/index.js"></script>
+    <div class="game-screen">
+        <div class="container-game">
+            <h1 class="title-game">GAME SNAKE</h1>
+            <canvas id="snakegame"></canvas>
+            <button class="btn-game" id="start-game">ENTER TO START</button>
+        </div>
+        <div>
+            <h1 class="title-game">SCORE</h1>
+            <div id="table-score"></div>
+        </div>
+    </div>
+    <script src="/js/index.js"></script>
 </body>
 </html>
